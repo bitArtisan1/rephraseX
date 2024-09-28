@@ -1,16 +1,17 @@
 # rephraseX-Automatic-Twitter-Posting-Bot
 
-This project automates the process of downloading images and videos from Twitter and posting rephrased tweets using the Claude AI API. It also includes progress tracking for media downloads and directory organization.
-
 ## Overview
-This repository provides scripts to scrape media (images and videos) from Twitter, rephrase tweets using the Claude API, and post them on Twitter. Additionally, it offers features like progress tracking for media downloads and the ability to organize content into specific directories.
+
+This Twitter bot automatically scrapes tweets and media from a specific user, it then rephrases the tweet content using Claude AI API (Anthropic) and reposts each tweet along with it's media attached to the provided authenticated user.
 
 ## Features
-- **Image and Video Scraping from Twitter:** Download images and videos from tweet URLs.
-- **Rephrase Tweets:** Use Claude AI to automatically rephrase tweets before posting them.
-- **Progress Tracking for Downloads:** Shows real-time progress bars for media downloads.
+- **Automatic Tweet Scraping:**
+- **Image and Video Scraping from Twitter:** Downloads images and videos attached to tweets.
+- **Rephrase Tweets:** Uses Claude AI to automatically rephrase tweets before posting them.
+- **Selenium & BeautifulSoup4 & requests:**
 - **Organized Storage:** Automatically creates directories based on usernames and media types.
 - **Error Handling:** Gracefully handles errors such as missing media or failed API requests.
+- **Smart Anti-bot Detection Mechanism:**
 - **Rate Limiting:** Includes delays to avoid hitting Twitter's rate limits during automation.
 
 ## Obtaining Twitter API Keys
@@ -29,7 +30,7 @@ To interact with the Twitter API, you'll need API keys from your Twitter Develop
    - Copy your **Consumer Key**, **Consumer Secret**, **Access Token**, and **Access Token Secret**.
 
 ## Obtaining Claude API Keys
-Claude is a powerful AI developed by Anthropic that can rephrase text. To use it, you need API keys:
+Claude is an AI tool developed by Anthropic that can rephrase text. To use it, you need API keys:
 
 1. **Sign Up for Anthropic API Access:**
    - Visit [Anthropic API](https://www.anthropic.com/) and sign up.
@@ -39,11 +40,11 @@ Claude is a powerful AI developed by Anthropic that can rephrase text. To use it
 
 ## Prerequisites
 Ensure you have the following installed:
-- Python 3.x
+- Python 3.10.x >=
 - Pip (Python package installer)
 - Twitter Developer API keys
 - Claude API keys from Anthropic
-- Selenium for image scraping (optional, if you want to scrape images)
+- Selenium
 
 ## Installation
 
@@ -57,42 +58,46 @@ Ensure you have the following installed:
 ```bash
 pip install -r requirements.txt
 ```
-3. **Set Up API Keys:**
-- Create a `.env` file in the root directory of your project.
-- Add the following lines to the `.env` file:
-```bash
-CONSUMER_KEY=your-consumer-key
-CONSUMER_SECRET=your-consumer-secret
-ACCESS_TOKEN=your-access-token
-ACCESS_TOKEN_SECRET=your-access-token-secret
-CLAUDE_API_KEY=your-claude-api-key
-```
-4. Install WebDriver for Selenium: If you're using the image scraping feature, install webdriver-manager for Selenium:
-
-```bash
-pip install webdriver-manager
-```
 ## Usage
-Download Images from Tweets: Use the Scrape_img.py script to download images from the specified tweet URLs:
 
-bash
-Copy code
-python Scrape_img.py
-Download Videos from Tweets: Use the twitter_downloader.py script to download videos from a list of Twitter URLs:
+### 1. Add Twitter Authentication Details
 
-bash
-Copy code
-python twitter_downloader.py
-Post Rephrased Tweets: Use the post.py script to authenticate with Twitter, rephrase tweets using the Claude API, and post them with media:
+You can either store your Twitter username and password in the `.env` file or provide them directly as command-line arguments when running the scraper.
 
-bash
-Copy code
-python post.py
-Download Images and Videos with Progress Bars: Use the Downloader.py script to download images or videos with a progress bar:
+#### Option 1: Storing credentials in `.env`
 
-bash
-Copy code
-python Downloader.py
+1. Create a `.env` file in the root directory of your project.
+2. Add the following lines to the `.env` file:
+
+    ```bash
+    CONSUMER_KEY=your-consumer-key
+    CONSUMER_SECRET=your-consumer-secret
+    ACCESS_TOKEN=your-access-token
+    ACCESS_TOKEN_SECRET=your-access-token-secret
+    CLAUDE_API_KEY=your-claude-api-key
+    TWITTER_USERNAME=your-twitter-username
+    TWITTER_PASSWORD=your-twitter-password
+    ```
+
+3. After configuring the `.env` file, run the following command to scrape tweets:
+
+    ```bash
+    python scraper.py -t {number_of_tweets} -u {username}
+    ```
+
+    **Example:**
+
+    ```bash
+    python scraper.py -t 5 -u elonmusk
+    ```
+
+#### Option 2: Providing credentials as command-line arguments
+
+Alternatively, you can provide your Twitter username and password directly in the command when running the scraper:
+
+```bash
+python scraper.py --user=@yourusername --password=yourpassword -t {number_of_tweets} -u {username}
+```
 Contribution
 We welcome contributions to this project! To contribute, follow these steps:
 
