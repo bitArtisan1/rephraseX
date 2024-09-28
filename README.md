@@ -11,7 +11,7 @@
 This Twitter bot automatically scrapes tweets and media from a specific user, it then rephrases the tweet content using Claude AI API (Anthropic) and reposts each tweet along with it's media attached to the provided authenticated user.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/4367e6b1-36a0-499d-9bf8-3790435f2512" alt="Image Description" height=100px width=100px>
+  <img src="https://github.com/user-attachments/assets/4367e6b1-36a0-499d-9bf8-3790435f2512" alt="Image Description" height=100px width=150px>
 </p>
 
 <p align="center"><strong><em>YouTube Caption Search Tool (CapScript)</em></strong></p>
