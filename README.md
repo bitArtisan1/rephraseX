@@ -5,14 +5,16 @@
 This Twitter bot automatically scrapes tweets and media from a specific user, it then rephrases the tweet content using Claude AI API (Anthropic) and reposts each tweet along with it's media attached to the provided authenticated user.
 
 ## Features
-- **Automatic Tweet Scraping:**
-- **Image and Video Scraping from Twitter:** Downloads images and videos attached to tweets.
+
+- **Automatic Tweet Scraping:** Automatically finds the most recent tweets of a user and saves their content.
+- **Image and Video Scraping from Twitter:** Downloads images and videos attached to tweets if any.
 - **Rephrase Tweets:** Uses Claude AI to automatically rephrase tweets before posting them.
-- **Selenium & BeautifulSoup4 & requests:**
+- **Selenium, BeautifulSoup4, and requests for Web Scraping:** Utilizes powerful web scraping libraries for efficient media extraction and interaction with web pages.
 - **Organized Storage:** Automatically creates directories based on usernames and media types.
 - **Error Handling:** Gracefully handles errors such as missing media or failed API requests.
-- **Smart Anti-bot Detection Mechanism:**
+- **Smart Anti-bot Detection Mechanism:** Bypasses common anti-bot measures by using headfull mode for webdriver manager (Firefox or Chrome).
 - **Rate Limiting:** Includes delays to avoid hitting Twitter's rate limits during automation.
+
 
 ## Obtaining Twitter API Keys
 To interact with the Twitter API, you'll need API keys from your Twitter Developer account. Follow these steps:
@@ -98,20 +100,15 @@ Alternatively, you can provide your Twitter username and password directly in th
 ```bash
 python scraper.py --user=@yourusername --password=yourpassword -t {number_of_tweets} -u {username}
 ```
-Contribution
+## Contribution
 We welcome contributions to this project! To contribute, follow these steps:
 
-Fork the repository.
-Create a new branch for your feature or bug fix.
-Commit your changes and push them to your fork.
-Open a pull request to the main repository with a detailed explanation of your changes.
-License and Legal Use
+- Fork the repository.
+- Create a new branch for your feature or bug fix.
+- Commit your changes and push them to your fork.
+- Open a pull request to the main repository with a detailed explanation of your changes.
+- 
+## License and Legal Use
 This project is licensed under the MIT License. However, please ensure your use of this bot complies with Twitter's Developer Agreement and Policy, and respect any intellectual property rights of the media you download and re-post. Always ensure you have permission to use any content you download before sharing it.
 
-Support Me
-If you find this project helpful, consider supporting me:
-
-Buy Me a Coffee
-PayPal Donation
-Thank you for your support!
 
