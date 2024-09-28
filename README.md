@@ -28,31 +28,52 @@ This Twitter bot automatically scrapes tweets and media from a specific user, it
 - **Rate Limiting:** Includes delays to avoid hitting Twitter's rate limits during automation.
 
 ## Obtaining Twitter API Keys
-To interact with the Twitter API, you'll need API keys from your Twitter Developer account. Follow these steps:
+To interact with the Twitter API, you must first obtain API keys from your Twitter Developer account. Below are the detailed steps:
 
-1. **Create a Twitter Developer Account:**
-   - Go to [Twitter Developer](https://developer.twitter.com/) and sign in.
-   - Apply for a developer account by filling in the required information.
+### Step 1: Sign Up for a Twitter Developer Account
+1. Go to the [Twitter Developer Portal](https://developer.twitter.com/).
+2. Click on the "Apply" button to request access to the Twitter Developer platform. 
+3. Fill out the required application form with details about how you intend to use the API. Be thorough and provide sufficient information, as Twitter reviews these applications manually.
+4. Once approved, you'll receive an email confirming your account creation.
 
-2. **Create a New App:**
-   - After approval, go to the "Projects & Apps" section.
-   - Click "Create App" and follow the steps to set up your app.
+### Step 2: Create a New Project and App
+1. After your developer account is approved, log into the [Twitter Developer Dashboard](https://developer.twitter.com/en/portal/dashboard).
+2. Click on "Projects & Apps" in the top menu, then click the **Create Project** button.
+3. Choose an appropriate name for your project and specify how you will use the API (for example, "scraping tweets for analysis" or "media download").
+4. After creating the project, click **Create App** within the project dashboard. Name your app, and then Twitter will automatically create the required credentials.
+
+### Step 3: Generate API Keys and Tokens
+1. Inside your app's dashboard, navigate to the **Keys and Tokens** tab.
+2. Here, you will find your **API Key** (Consumer Key) and **API Secret Key** (Consumer Secret).
+3. Scroll down to the **Access Token & Access Token Secret** section. Click **Create** to generate an **Access Token** and **Access Token Secret**.
+4. Copy all four credentials (API Key, API Secret Key, Access Token, Access Token Secret) and store them securely. These are required for authenticating your app to interact with Twitter’s API.
    
-3. **Generate API Keys:**
-   - In your app’s settings, navigate to "Keys and Tokens."
-   - Copy your **Consumer Key**, **Consumer Secret**, **Access Token**, and **Access Token Secret**.
+> **Important:** Never expose these keys publicly (e.g., in your source code or on GitHub). Store them securely in environment variables or a `.env` file.
+
+---
 
 ## Obtaining Claude API Keys
-Claude is an AI tool developed by Anthropic that can rephrase text. To use it, you need API keys:
+Claude, developed by Anthropic, is an AI-based tool that can be used to rephrase text, among other functions. To utilize the Claude API, follow these steps:
 
-1. **Sign Up for Anthropic API Access:**
-   - Visit [Anthropic API](https://www.anthropic.com/) and sign up.
-   
-2. **Obtain an API Key:**
-   - After registering, you will receive access to the Claude API. Retrieve your API key from the API dashboard.
+### Step 1: Sign Up for Anthropic's API Access
+1. Visit the [Anthropic API Sign-Up Page](https://www.anthropic.com/) and create an account by providing your email and other required details.
+2. After signing up, you might be asked to verify your email address. Follow the steps in the confirmation email sent to you.
+
+### Step 2: Apply for API Access
+1. Once you’re logged in, go to the **API Access** section in your account dashboard. If you’re not immediately granted access, you may need to request access by filling out a short form explaining how you plan to use Claude’s API (e.g., rephrasing content for social media or language-based tasks).
+2. After approval, you’ll be able to view your API Key in the **API Dashboard**.
+
+### Step 3: Retrieve and Secure Your API Key
+1. Once granted access, navigate to the API dashboard, where your **Claude API Key** will be listed.
+2. Copy the API key and store it in a secure place, such as an environment variable or `.env` file.
+
+> **Note:** Ensure your usage of the Claude API complies with Anthropic’s [terms of service](https://www.anthropic.com/terms).
+
+Now, you're ready to use the Claude API to rephrase text in your application. Always safeguard your API key to avoid unauthorized access.
+
 
 ## Prerequisites
-Ensure you have the following installed:
+1. Ensure you have the following installed:
 - Python 3.10.x >=
 - Pip (Python package installer)
 - Twitter Developer API keys
