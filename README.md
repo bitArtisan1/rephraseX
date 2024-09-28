@@ -85,14 +85,14 @@ Now, you're ready to use the Claude API to rephrase text in your application. Al
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your-repo/twitter-media-downloader.git
-   cd twitter-media-downloader
+   git clone https://github.com/bitArtisan1/rephraseX-Automatic-Twitter-Posting-Bot.git
+   cd rephraseX-Automatic-Twitter-Posting-Bot
    ```
 2. **Install the Required Dependencies:** Install the required Python libraries using pip:
 
-```bash
-pip install -r requirements.txt
-```
+   ```bash
+   pip install -r requirements.txt
+   ```
 ## Usage
 
 ### 1. Add Twitter Authentication Details
