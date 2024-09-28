@@ -21,10 +21,11 @@ This Twitter bot automatically scrapes tweets and media from a specific user, it
 - **Automatic Tweet Scraping:** Automatically finds the most recent tweets of a user and saves their content.
 - **Image and Video Scraping from Twitter:** Downloads images and videos attached to tweets if any.
 - **Rephrase Tweets:** Uses Claude AI to automatically rephrase tweets before posting them.
-- **Selenium, BeautifulSoup4, and requests for Web Scraping:** Utilizes powerful web scraping libraries for efficient media extraction and interaction with web pages.
+- **Selenium, BeautifulSoup4, and Requests for Web Scraping:** Utilizes powerful web scraping libraries for efficient media extraction and interaction with web pages.
+- **Tweepy Integration:** Leverages the Tweepy library to interact with the Twitter API for seamless authentication and data retrieval.
 - **Organized Storage:** Automatically creates directories based on usernames and media types.
 - **Error Handling:** Gracefully handles errors such as missing media or failed API requests.
-- **Smart Anti-bot Detection Mechanism:** Bypasses common anti-bot measures by using headfull mode for webdriver manager (Firefox or Chrome).
+- **Smart Anti-bot Detection Mechanism:** Bypasses common anti-bot measures by using headful mode for WebDriver Manager (Firefox or Chrome).
 - **Rate Limiting:** Includes delays to avoid hitting Twitter's rate limits during automation.
 
 ## Obtaining Twitter API Keys
