@@ -1,8 +1,20 @@
+<div align="right">
+    <a href="https://www.buymeacoffee.com/bitArtisan">
+        <img src="https://img.shields.io/badge/Buy_me_a_coffee-FFDD00?style=flat-square&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me a Coffee Pls!" />
+    </a>
+</div>
+
 # rephraseX-Automatic-Twitter-Posting-Bot
 
 ## Overview
 
 This Twitter bot automatically scrapes tweets and media from a specific user, it then rephrases the tweet content using Claude AI API (Anthropic) and reposts each tweet along with it's media attached to the provided authenticated user.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/9947305b-6cab-47bb-85c1-ecf80f8b2e0c" alt="Image Description">
+</p>
+
+<p align="center"><strong><em>YouTube Caption Search Tool (CapScript)</em></strong></p>
 
 ## Features
 
@@ -111,4 +123,23 @@ We welcome contributions to this project! To contribute, follow these steps:
 ## License and Legal Use
 This project is licensed under the MIT License. However, please ensure your use of this bot complies with Twitter's Developer Agreement and Policy, and respect any intellectual property rights of the media you download and re-post. Always ensure you have permission to use any content you download before sharing it.
 
+## Support Me
+If you find RepoUp useful, consider supporting me by:
 
+- Starring the repository on GitHub
+- Sharing the tool with others
+- Providing feedback and suggestions
+- Follow me for more :)
+
+<a href="https://www.buymeacoffee.com/bitArtisan"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=bitArtisan&button_colour=CBC3E3&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
+<center>
+    
+---
+For any issues or feature requests, please open an issue on GitHub. Happy coding!
+
+<div style="text-align: center;">
+  <p align="center">
+    <img src="https://github.com/user-attachments/assets/36a3e590-bad2-463d-a25e-f56d65c26761" alt="octodance" width="100" height="100" style="margin-right: 10px;"/>
+  </p>
+</div>
+</center>
