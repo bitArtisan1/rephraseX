@@ -1,0 +1,9 @@
+requests
+bs4
+tqdm
+selenium
+webdriver-manager
+tweepy
+anthropic
+python-dotenv
+alive-progress
