@@ -11,7 +11,7 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from alive_progress import alive_bar, config_handler
 from tqdm import tqdm
-from logger import Logger  # Our custom enhanced logger
+from logger import Logger
 
 from selenium.webdriver.chrome.options import Options
 
