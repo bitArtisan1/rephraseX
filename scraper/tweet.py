@@ -50,14 +50,41 @@ class Tweet:
         if self.error:
             return
 
+        # Updated content extraction to properly handle Twitter handles
         self.content = ""
-        contents = card.find_elements(
-            "xpath",
-            '(.//div[@data-testid="tweetText"])[1]/span | (.//div[@data-testid="tweetText"])[1]/a',
-        )
-
-        for index, content in enumerate(contents):
-            self.content += content.text
+        try:
+            # First try to get all text spans and anchor elements that might contain handles and hashtags
+            contents = card.find_elements(
+                "xpath",
+                '(.//div[@data-testid="tweetText"])[1]/span | (.//div[@data-testid="tweetText"])[1]/a',
+            )
+            
+            for index, content in enumerate(contents):
+                if content.tag_name == "a":
+                    # Special handling for links that might be handles or hashtags
+                    link_text = content.text
+                    if link_text.startswith("@") or link_text.startswith("#"):
+                        # This is a handle or hashtag, preserve it with a space
+                        self.content += link_text + " "
+                    else:
+                        # Regular link
+                        self.content += link_text + " "
+                else:
+                    # Regular text
+                    self.content += content.text + " "
+                    
+            # Trim extra spaces
+            self.content = self.content.strip()
+            
+            # If no content found, try the alternative method
+            if not self.content:
+                self.content = card.find_element(
+                    "xpath", '(.//div[@data-testid="tweetText"])[1]'
+                ).text
+                
+        except NoSuchElementException:
+            # If tweet has no text content
+            self.content = ""
 
         try:
             self.tags = card.find_elements(
@@ -185,4 +212,3 @@ class Tweet:
         
     def get_tweet_link(self):
         return self.tweet_link
-        return self.user
