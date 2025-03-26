@@ -48,7 +48,7 @@ def download_twitter_video(tweet_links, usernames):
             continue
 
         tweet_id = extract_tweet_id(tweet_url)
-        # Determine username: use the index in tweet_links if possible, default otherwise.
+       
         username_index = tweet_links.index(tweet_url) if tweet_url in tweet_links else 0
         username = usernames[username_index] if username_index < len(usernames) else "twitter_media"
 
@@ -85,12 +85,11 @@ def download_video(url, file_name) -> None:
     block_size = 1024  # 1KB
     download_path = file_name
 
-    # Use the indeterminate spinner for downloads with unknown progress
+
     with open(download_path, "wb") as file, logger.indeterminate_spinner(f"Downloading {os.path.basename(file_name)}") as spinner:
         for data in response.iter_content(block_size):
             file.write(data)
-            # Optionally, update spinner description if desired
-            # spinner.set_description("Downloading...")
+
         spinner.set_description("Download complete!")
     
     logger.info(f"Video downloaded successfully to {download_path}!")
