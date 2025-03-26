@@ -1,17 +1,25 @@
 import os
 import sys
 import argparse
+from pprint import pprint
+import logging
 import getpass
+import re
+sys.stdout.reconfigure(encoding='utf-8')
+
 from twitter_scraper import Twitter_Scraper
 from twitter_downloader import download_twitter_video
-from post import authenticate_twitter, post_scraped_tweets, rephrase_text_with_claude
+from twitter_poster import post_tweets_with_selenium, Twitter_Poster
+from logger import Logger
 
+from selenium.webdriver.chrome.options import Options
+
+logger = Logger("AppLogger", "app.log")
 try:
     from dotenv import load_dotenv
-
-    print("Loading .env file")
+    logger.info("Loading .env file")
     load_dotenv()
-    print("Loaded .env file\n")
+    logger.info("Loaded .env file")
 except Exception as e:
     print(f"Error loading .env file: {e}")
     sys.exit(1)
@@ -25,7 +33,6 @@ def main():
             description="Twitter Scraper is a tool that allows you to scrape tweets from Twitter without using Twitter's API.",
         )
 
-        # Parsing Twitter credentials and arguments
         parser.add_argument("--mail", type=str, default=os.getenv("TWITTER_MAIL"), help="Your Twitter mail.")
         parser.add_argument("--user", type=str, default=os.getenv("TWITTER_USERNAME"), help="Your Twitter username.")
         parser.add_argument("--password", type=str, default=os.getenv("TWITTER_PASSWORD"), help="Your Twitter password.")
@@ -37,6 +44,10 @@ def main():
         parser.add_argument("-a", "--add", type=str, default="", help="Additional data to scrape and save in CSV.")
         parser.add_argument("--latest", action="store_true", help="Scrape latest tweets")
         parser.add_argument("--top", action="store_true", help="Scrape top tweets")
+        parser.add_argument("--no-post", action="store_true", help="Only scrape and rephrase, don't post tweets")
+        parser.add_argument("--delay", type=int, default=60, help="Delay between posting tweets (seconds)")
+        parser.add_argument("--no-media", action="store_true", help="Skip downloading media from tweets")
+        parser.add_argument("--keep-media", action="store_true", help="Don't delete media files after posting")
 
         args = parser.parse_args()
 
@@ -46,14 +57,12 @@ def main():
         USER_PASSWORD = args.password
 
         if USER_UNAME is None:
-            USER_UNAME = input("Twitter Username: ")
+            USER_UNAME = input("Twitter Username:")
 
         if USER_PASSWORD is None:
-            USER_PASSWORD = getpass.getpass("Enter Password: ")
+            USER_PASSWORD = input("Enter Password:")
 
-        print()
-
-        # Validate scraping parameters
+        logger.info("Validating scraping parameters...")
         tweet_type_args = []
         if args.username:
             tweet_type_args.append(args.username)
@@ -65,11 +74,11 @@ def main():
         additional_data = args.add.split(",")
 
         if len(tweet_type_args) > 1:
-            print("Please specify only one of --username, --hashtag, or --query.")
+            logger.error("Please specify only one of --username, --hashtag, or --query.")
             sys.exit(1)
 
         if args.latest and args.top:
-            print("Please specify either --latest or --top, not both.")
+            logger.error("Please specify either --latest or --top, not both.")
             sys.exit(1)
 
         # Step 1: Scrape Tweets
@@ -89,46 +98,88 @@ def main():
                 scrape_poster_details="pd" in additional_data,
             )
 
-            # Collect scraped data
-            usernames = [tweet['user'] for tweet in scraper.get_tweets() if tweet.get('user')]
-            tweet_links = [tweet['tweet_link'] for tweet in scraper.get_tweets() if tweet.get('tweet_link')]
-            tweet_content = [tweet['content'] for tweet in scraper.get_tweets() if tweet.get('content')]
+            scraped_tweets = scraper.get_tweets()
 
-            print("Scraped Tweet Content:", tweet_content)
-            print("Scraped Tweet Links:", tweet_links)
-            print("Scraped Usernames:", usernames)
+            table_rows = []
+            for tweet in scraped_tweets:
+                user = tweet.get('user', '')
+                content = tweet.get('content', '')
+                tweet_link = tweet.get('tweet_link', '')
+                table_rows.append([user, content, tweet_link])
+            
+            headers = ["User", "Content", "Tweet Link"]
+            logger.log_table(headers, table_rows, title="Scraped Tweets Summary")
 
             scraper.save_to_csv()
 
-            # Step 2: Rephrase and Post Tweets
-            # Authenticate Twitter for posting tweets
-            client = authenticate_twitter(
-                consumer_key=os.getenv("TWITTER_API_KEY"),
-                consumer_secret=os.getenv("TWITTER_API_SECRET_KEY"),
-                access_token=os.getenv("TWITTER_ACCESS_TOKEN"),
-                access_token_secret=os.getenv("TWITTER_ACCESS_TOKEN_SECRET")
-            )
+            # Step 2: Download media from tweet links
+            if not args.no_media:
+                logger.info("Starting media download process...")
+                tweet_links = [tweet.get('tweet_link', '') for tweet in scraped_tweets if tweet.get('tweet_link', '')]
+                users = [tweet.get('user', '') for tweet in scraped_tweets if tweet.get('user', '')]
+                download_twitter_video(tweet_links, users)
+            else:
+                logger.info("Skipping media download (--no-media flag provided).")
 
-            # Format the scraped tweets into a structure for posting
-            tweets_data = [{"text": content, "media_urls": []} for content in tweet_content]  # Add media if needed
+            # Step 3: Rephrase and Post Tweets
+            tweets_data = []
+            for tweet in scraped_tweets:
+                content = tweet.get('content', '')
+                tweet_link = tweet.get('tweet_link', '')
+                tweet_id = None
+                if tweet_link:
+                    match = re.search(r'/status/(\d+)', tweet_link)
+                    if match:
+                        tweet_id = match.group(1)
+                tweet_data = {
+                    "text": content,
+                    "media_urls": [],
+                    "user": tweet.get('user', ''),
+                    "tweet_link": tweet_link
+                }
+                if tweet_id:
+                    tweet_data["tweet_id"] = tweet_id
+                tweets_data.append(tweet_data)
 
-            # Post rephrased tweets
-            post_scraped_tweets(client, os.getenv("CLAUDE_API_KEY"), tweets_data)
+            if not args.no_post:
+                if not scraper.interrupted and hasattr(scraper, 'driver'):
+                    poster = Twitter_Poster(
+                        driver=scraper.driver,
+                        username=USER_UNAME,
+                        password=USER_PASSWORD,
+                        mail=USER_MAIL
+                    )
+                    poster.logged_in = True
+                else:
+                    poster = Twitter_Poster(
+                        username=USER_UNAME,
+                        password=USER_PASSWORD,
+                        mail=USER_MAIL
+                    )
+                    poster.login()
 
-            # Download videos from tweet links
-            download_twitter_video(tweet_links, usernames)
+                post_tweets_with_selenium(
+                    poster,
+                    tweets_data,
+                    delay_between_tweets=args.delay,
+                    keep_media=args.keep_media
+                )
+            else:
+                logger.info("Skipping posting (--no-post flag provided).")
 
-            if not scraper.interrupted:
+            if not scraper.interrupted and hasattr(scraper, 'driver'):
                 scraper.driver.close()
         else:
-            print("Missing Twitter username or password environment variables. Please check your .env file.")
+            logger.error("Missing Twitter username or password environment variables. Please check your .env file.")
             sys.exit(1)
 
     except KeyboardInterrupt:
-        print("\nScript Interrupted by user. Exiting...")
+        logger.warning("Script Interrupted by user. Exiting...")
         sys.exit(1)
     except Exception as e:
-        print(f"Error: {e}")
+        logger.error(f"Error: {e}", exc_info=True)
+        import traceback
+        traceback.print_exc()
         sys.exit(1)
 
 
