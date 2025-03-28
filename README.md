@@ -70,7 +70,7 @@ You can install **Ollama** manually or use **Chocolatay** for installation.
 #### Installation via Chocolatay  
 Alternatively, you can use the **Chocolatay** package manager to install Ollama easily by running the following command in your terminal:
 
-`chocolatay install ollama`
+```chocolatay install ollama```
 
 ### Step 2: Install the Llama 3.2 Model  
 Once Ollama is installed, you can add the Llama 3.2 model to Ollama. 
@@ -79,7 +79,7 @@ Once Ollama is installed, you can add the Llama 3.2 model to Ollama.
 1. After you have installed Ollama, open your terminal or command prompt.
 2. Run the following command to download and install the Llama 3.2 model:
 
-`ollama pull llama3.2`
+```ollama pull llama3.2```
 
 This will download the model to your local machine, making it available for offline usage.
 
@@ -124,12 +124,14 @@ Ensure you have the following installed:
 
 1. **Clone the Repository:**  
 
-`git clone https://github.com/bitArtisan1/rephraseX-Automatic-Twitter-Posting-Bot.git`  
-`cd rephraseX-Automatic-Twitter-Posting-Bot`
+```
+git clone https://github.com/bitArtisan1/rephraseX-Automatic-Twitter-Posting-Bot.git  
+cd rephraseX-Automatic-Twitter-Posting-Bot
+```
 
 2. **Install the Required Dependencies:** Install the required Python libraries using pip:
 
-`pip install -r requirements.txt`
+```pip install -r requirements.txt```
 
 ## Usage
 
@@ -151,13 +153,13 @@ You can either store your Twitter username and password in the .env file or prov
 
 **Example:**
 
-`python scraper.py -t 5 -u elonmusk`
+```python scraper.py -t 5 -u elonmusk```
 
 #### Option 2: Providing credentials as command-line arguments  
 
 Alternatively, you can provide your Twitter username and password directly in the command when running the scraper:
 
-`python scraper.py --user=@yourusername --password=yourpassword -t {number_of_tweets} -u {username}`
+```python scraper.py --user=@yourusername --password=yourpassword -t {number_of_tweets} -u {username}```
 
 ## Contribution  
 We welcome contributions to this project! To contribute, follow these steps:
