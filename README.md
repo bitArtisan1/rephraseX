@@ -72,10 +72,42 @@ Alternatively, you can use the **Chocolatay** package manager to install Ollama 
 
 `chocolatay install ollama`
 
-### Step 2: Setup and Use  
-Once Ollama is installed, you can interact with the **Llama 3.2** model for rephrasing tweets offline. No need for internet connectivity to interact with the rephrasing model.
+### Step 2: Install the Llama 3.2 Model  
+Once Ollama is installed, you can add the Llama 3.2 model to Ollama. 
 
-> **Note:** Ensure your use of Ollama complies with the [terms of service](https://www.ollama.com/terms).
+#### Installing Llama 3.2  
+1. After you have installed Ollama, open your terminal or command prompt.
+2. Run the following command to download and install the Llama 3.2 model:
+
+`ollama pull llama3.2`
+
+This will download the model to your local machine, making it available for offline usage.
+
+> **Note:** Ensure that you have sufficient storage space for the model, as it requires a decent amount of space on your local drive.
+
+---
+
+## Llama 3.2 Model Details
+
+The Llama 3.2 model is a powerful language model designed for a variety of NLP tasks, including text generation, summarization, translation, and rephrasing. It can perform effectively on a range of text-based tasks, including the rephrasing of tweets in this bot.
+
+| **Specification**        | **Details**                                |
+|--------------------------|--------------------------------------------|
+| **Model Name**            | Llama 3.2                                  |
+| **Model Size**            | ~13GB                                      |
+| **Max Tokens**            | 4096 tokens                                |
+| **Architecture**          | Transformer-based model                   |
+| **Training Data**         | Trained on a large corpus of text from diverse domains. |
+| **Performance**           | High quality text generation and rephrasing with the ability to maintain context across multiple sentences. |
+| **Offline Usage**         | Fully offline once installed via Ollama.    |
+| **Supported Tasks**       | Text rephrasing, summarization, language modeling, question answering. |
+| **Storage Space**         | Requires approximately 13 GB of free disk space for the full model. |
+
+### Key Features of Llama 3.2:
+- **Max Tokens**: Llama 3.2 can handle up to **4096 tokens** in a single processing request. This allows the model to manage long tweets or threaded conversations with ease.
+- **Size**: The model is **13GB** in size, so ensure you have sufficient space on your machine for installation.
+- **Performance**: Llama 3.2 is fine-tuned for multiple language processing tasks, making it ideal for the rephrasing tasks this bot performs.
+- **Offline Functionality**: Once installed, you don’t need an internet connection to interact with the model, which is great for both privacy and performance.
 
 ---
 
