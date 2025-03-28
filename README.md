@@ -54,11 +54,11 @@ This Twitter bot automatically scrapes tweets and media from a specific user, th
 
 > **Important:** Never expose these keys publicly (e.g., in your source code or on GitHub). Store them securely in environment variables or a .env file.
 
----
+### Transition to Offline Rephrasing with Ollama
 
-## Transition to Offline Rephrasing with Ollama
+While the bot previously relied on Twitter API keys for rephrasing, this version no longer uses API calls. Instead, **offline rephrasing** is powered by **Ollama** and the **Llama 3.2 model**. This change allows the bot to function without internet access for rephrasing tweets.
 
-The project no longer requires Twitter API keys. Instead, the rephrasing is done locally using the **Ollama** platform, which provides access to Llama 3.2 models for text rephrasing. Here's how to get started with Ollama:
+Here’s how to set it up:
 
 ### Step 1: Install Ollama  
 You can install **Ollama** manually or use **Chocolatay** for installation.
