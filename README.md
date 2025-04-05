@@ -1,8 +1,4 @@
-<div align="right">
-    <a href="https://www.buymeacoffee.com/bitArtisan">
-        <img src="https://img.shields.io/badge/Buy_me_a_coffee-FFDD00?style=flat-square&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me a Coffee Pls!" />
-    </a>
-</div>
+<script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#739af5', 'D1D11CZNM1');kofiwidget2.draw();</script> 
 
 # rephraseX-Automatic-Twitter-Posting-Bot
 
