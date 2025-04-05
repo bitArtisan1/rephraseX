@@ -180,17 +180,15 @@ If you find RepoUp useful, consider supporting me by:
 - Providing feedback and suggestions  
 - Follow me for more :)
 
-<a href="https://www.buymeacoffee.com/bitArtisan"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=bitArtisan&button_colour=CBC3E3&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
-
-<center>
-    
----
-For any issues or feature requests, please open an issue on GitHub. Happy coding!
-
 
   <a href="https://ko-fi.com/D1D11CZNM1">
     <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Support me on Ko-fi" />
   </a>
 
+
+<center>
+    
+---
+For any issues or feature requests, please open an issue on GitHub. Happy coding!
 
 </center>
