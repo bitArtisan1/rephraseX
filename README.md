@@ -187,9 +187,10 @@ If you find RepoUp useful, consider supporting me by:
 ---
 For any issues or feature requests, please open an issue on GitHub. Happy coding!
 
-<div style="text-align: center;">
-  <p align="center">
-    <img src="https://github.com/user-attachments/assets/36a3e590-bad2-463d-a25e-f56d65c26761" alt="octodance" width="100" height="100" style="margin-right: 10px;"/>
-  </p>
-</div>
+
+  <a href="https://ko-fi.com/D1D11CZNM1">
+    <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Support me on Ko-fi" />
+  </a>
+
+
 </center>
