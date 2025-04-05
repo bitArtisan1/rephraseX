@@ -1,4 +1,8 @@
-<script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#739af5', 'D1D11CZNM1');kofiwidget2.draw();</script> 
+<p align="center">
+  <a href="https://ko-fi.com/D1D11CZNM1">
+    <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Support me on Ko-fi" />
+  </a>
+</p>
 
 # rephraseX-Automatic-Twitter-Posting-Bot
 
